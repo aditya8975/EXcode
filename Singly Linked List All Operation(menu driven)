@@ -214,7 +214,7 @@ void main()
       printf("\n 3.search");
       printf("\n 4.count node");
 
-      printf("\n 5. insert node:(no)");
+      printf("\n 5. insert node:");
       printf("\n 6. deletet node:");
       printf("\n 7. reverse node:");
 
