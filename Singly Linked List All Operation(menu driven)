@@ -162,23 +162,6 @@ void search(struct node *head)
 
 }
 
-void sort(struct node *head)
-
-{
-
-    int t;
-    struct node *curr,*temp;
-    for(curr=head;curr!=NULL;curr=curr->next)
-    {
-        for(temp=curr->next;temp!=NULL;temp=temp->next  )
-            if(curr->data>temp->data)
-        {
-            t=curr->data;
-            curr->data=temp->data;
-            temp->data=t;
-        }
-    }
-}
 
 struct node *reverse(struct node *head)
 {
