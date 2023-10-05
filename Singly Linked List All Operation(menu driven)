@@ -57,38 +57,43 @@ void countnodes(struct node *head)
 
 }
 
-struct node *insert(struct node *head)
+struct dlnode *insert(struct dlnode *head)
 {
-    struct node *newnode,*curr;
-    int pos,i;
-    newnode =(struct node *)malloc(sizeof(struct node));
-    printf("enter data to inser:");
-    scanf("%d",&newnode->data);
-    printf("enter the position to insert:");
-    scanf("%d",pos);
-    if(pos==1)
-    {
-        newnode->next=head;
-        head=newnode;
+  struct node *newnode,*curr,*temp;
+  int pos,i;
 
-    }
-    else
-    {
-        curr=head;
-        for(i=1;i<pos-1;i++)
-        {
-            curr=curr->next;
-            if(curr==NULL)
-            {
-                printf("pos not found..");
-                return(head);
-            }
-        }
-        newnode->next=curr->next;
-        curr->next=newnode;
+  newnode=(struct node *)malloc(sizeof(struct node));
+  printf("Enter data to insert:");
+  scanf("%d",&newnode->data);
+  newnode->next=NULL;
 
-    }
-    return(head);
+  printf("Enter position at which to insert:");
+  scanf("%d",&pos);
+  if(pos==1)
+  {
+    newnode->next=head;
+
+    head=newnode;
+  }
+  else
+  {
+    curr=head;
+    for(i=1;i<pos-1;i++)
+    {
+     curr=curr->next;
+     if(curr==NULL)
+     {
+       printf("out of range");
+       return head;
+     }
+   }
+    temp=curr->next;
+    newnode->next=temp;
+
+    curr->next=newnode;
+
+  }
+  return(head);
 
 };
 struct node *delete(struct node *head)
@@ -229,6 +234,7 @@ void main()
           case 4:countnodes(head);
           break;
           case 5:head=insert(head);
+          display(head);
           break;
           case 6:head=delete(head);
           display(head);
