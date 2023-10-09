@@ -57,7 +57,7 @@ void countnodes(struct node *head)
 
 }
 
-struct node *insert(struct dlnode *head)
+struct node *insert(struct node *head)
 {
   struct node *newnode,*curr,*temp;
   int pos,i;
