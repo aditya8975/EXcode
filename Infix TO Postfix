@@ -83,13 +83,13 @@ void infix_to_postfix(char infix[30],char postfix[30])
 	 while(precedence(ch)<=precedence(stktop(&s)))
 	  postfix[j++]=pop(&s);
 	  push(&s,ch);
-	}//else
+	}
 	 break;
 	 case ')':
 		   while((ch1=pop(&s))!='(')
 		    postfix[j++]=ch1;
 		    break;
-	 default:postfix[j++]=ch;//operand
+	 default:postfix[j++]=ch;
    }
 }
 	while(!empty(&s))
