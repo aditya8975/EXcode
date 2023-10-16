@@ -1,0 +1,97 @@
+
+#include<stdio.h>
+#include<conio.h>
+ struct stack
+{
+	int data;
+	struct stack *next;
+};
+struct stack *top;
+void initstack()
+{
+  top=NULL;
+}
+int isempty()
+{
+  return(top==NULL);
+}
+void push(int num)
+{
+	struct stack *nw;
+	nw=(struct stack *)malloc(sizeof(struct stack));
+		nw->next=NULL;
+
+		nw->data=num;
+		nw->next=top;
+		top=nw;
+}
+int pop()
+{
+	int num;
+	struct stack *curr=top;
+		num=top->data;
+		curr=top;
+		top=top->next;
+		free(curr);
+		return num;
+}
+ void display()
+ {
+   struct stack *curr;
+   curr=top;
+    while(curr!=NULL)
+    {
+     printf("%d\t",curr->data);
+     curr=curr->next;
+   }
+}
+int peak()
+{
+  return(top->data);
+}
+void main()
+{
+	int n,ch;
+
+	initstack();
+	do
+	{
+		printf("\n1:Push ");
+		printf("\n2:Pop ");
+		printf("\n 3.display\n4:peak");
+		printf("\n5:Exit ");
+		printf("\nEnter your choice ");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:printf("\nEnter the elements : ");
+				   scanf("%d",&n);
+				   push(n);
+				   display();
+				   break;
+			case 2:
+				   if(isempty())
+				   printf("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>stack is empty<<<<<<<<<<<<<<<<<<<<<");
+				   else
+				   printf("\npoped element is %d",pop());
+				   printf("\n elements in stack :");
+				   display();
+				   break;
+			case 3: if(isempty())
+				   printf("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>stack is empty<<<<<<<<<<<<<<<<<<<<<");
+				   else
+                        display();
+
+				break;
+			case 4: if(isempty())
+				printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>stack is empty<<<<<<<<<<<<<<<<<<<<<");
+				else
+				printf("top element of stack is %d ",peak());
+			       break;
+			case 5:exit(0);
+			default:printf("\nInvalid choice");
+		}
+	}while(ch!=5);
+
+}
+
