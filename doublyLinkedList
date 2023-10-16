@@ -1,0 +1,186 @@
+
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+
+struct dlnode
+{
+ int data;
+ struct dlnode *next,*prev;
+};
+
+struct dlnode *dlcreate()
+{
+  int n,i;
+
+  struct dlnode *head=NULL,*newnode,*curr;
+  printf("\nHow many nodes:");
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    newnode=(struct dlnode*)malloc(sizeof(struct dlnode));
+    printf("Enter data:");
+    scanf("%d",&newnode->data);
+    if(head==NULL)
+      head=curr=newnode;
+    else
+    {
+      curr->next=newnode;
+      newnode->prev=curr;
+      curr=newnode;
+    }
+
+  }//for
+  newnode->next=NULL;
+  newnode->prev=NULL;
+
+  return(head);
+}
+
+struct dlnode *dlinsert(struct dlnode *head)
+{
+  struct dlnode *newnode,*curr,*temp;
+  int pos,i;
+
+  newnode=(struct dlnode *)malloc(sizeof(struct dlnode));
+  printf("Enter data to insert:");
+  scanf("%d",&newnode->data);
+  newnode->next=NULL;
+  newnode->prev=NULL;
+  printf("Enter position at which to insert:");
+  scanf("%d",&pos);
+  if(pos==1)
+  {
+    newnode->next=head;
+
+    head=newnode;
+  }
+  else
+  {
+    curr=head;
+    for(i=1;i<pos-1;i++)
+    {
+     curr=curr->next;
+     if(curr==NULL)
+     {
+       printf("out of range");
+       return head;
+     }
+   }
+    temp=curr->next;
+    newnode->next=temp;
+
+    curr->next=newnode;
+
+  }
+  return(head);
+
+}
+
+struct dlnode *reverse(struct dlnode *head)
+{
+    struct dlnode *p, *q, *r;
+
+    p = q = r =head;
+    p = p->next->next;
+    q = q->next;
+    r->next = NULL;
+    q->next = r;
+
+    while (p != NULL)
+    {
+        r = q;
+        q = p;
+        p = p->next;
+        q->next = r;
+    }
+    head = q;
+}
+
+
+
+
+
+
+void dldisplay(struct dlnode *head)
+{
+   struct dlnode *curr;
+  for(curr=head;curr!=NULL;curr=curr->next)
+  printf("%d\t",curr->data);
+}
+
+
+struct dlnode *dldelet(struct dlnode *head)
+{
+ struct dlnode *curr,*temp;
+  int pos,i;
+  curr=head;
+  printf("Enter position to delete:");
+  scanf("%d",&pos);
+  if(pos==1)
+  {
+    head=head->next;
+    head->prev=NULL;
+    free(curr);
+  }
+  else
+  {
+    for(i=1;i<pos;i++)
+    {
+     temp=curr;
+     curr=curr->next;
+     if(curr==NULL)
+     {
+       printf("pos not found");
+       return head;
+     }
+    }
+    if(curr->next==NULL)
+    {
+      temp->next=NULL;
+      free(curr);
+    }
+    else
+    {
+      temp->next=curr->next;
+       curr->next->prev=temp;
+    free(curr);
+   }
+ }
+   return(head);
+}
+
+void main()
+{
+ struct dlnode *head=NULL;
+ int choice;
+
+  while(1)
+  {
+    printf("\n\n1.Create Doubly Linked List");
+    printf("\n2.Display");
+    printf("\n3.Insert");
+    printf("\n4.Delete \n5.reverse");
+    printf("\n0.Exit");
+    printf("\nSelect Choice:");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+     case 1: head=dlcreate();
+		break;
+     case 2: dldisplay(head);
+		break;
+    case 3: head=dlinsert(head);
+	     dldisplay(head);
+		break;
+     case 4: head=dldelet(head);
+	      dldisplay(head);
+		break;
+		case 5:head=reverse(head);
+		dldisplay(head);
+		break;
+     case 0: exit(0);
+     default: printf("Invalid choice:");
+    }
+  }
+}
