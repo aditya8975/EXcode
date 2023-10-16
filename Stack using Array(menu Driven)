@@ -1,0 +1,95 @@
+
+#include<stdio.h>
+#include<conio.h>
+#define sz 5
+struct stack
+{
+  int stk[sz];
+  int top;
+};
+
+void initstack(struct stack *s1)
+{
+  s1->top=-1;
+}
+
+int isfull(struct stack *s1)
+{
+      return(s1->top==sz-1);
+}
+int isempty(struct stack *s1)
+{
+	return(s1->top==-1);
+}
+void push(struct stack *s1)
+{        int num;
+	     printf("\nEnter the elements : ");
+	    scanf("%d",&num);
+		s1->top++;
+		s1->stk[s1->top]=num;
+}
+void pop(struct stack *s1)
+{
+	printf("\nPopped element is %d\n ",s1->stk[s1->top]);
+	 s1->top--;
+}
+void display(struct stack *s1)
+{
+  int i;
+    printf("\nstack elements are  ");
+    for(i=s1->top;i>=0;i--)
+    printf("%d\t",s1->stk[i]);
+
+}
+int peak(struct stack *s1)
+{
+   int n=NULL;
+  n=s1->stk[s1->top];
+  return n;
+}
+void main()
+{struct stack s1;
+	int ch,num;
+
+	initstack(&s1);
+	while(1)
+	{
+		printf("\n1:Push");
+		printf("\n2:Pop \n3:display");
+		printf("\n4:peak\n5:Exit ");
+		printf("\nEnter your choice : ");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:  if(isfull(&s1))
+				 printf("\n>>>>>>>>>>>>>>>>>>>>stack is full<<<<<<<<<<<<<<<<<") ;
+				 else
+				push(&s1);
+				display(&s1);
+				   break;
+			case 2:  if(isempty(&s1))
+				 printf("\n >>>>>>>>>>>stack is empty<<<<<<<<<<<<<") ;
+			       else
+				pop(&s1);
+				display(&s1);
+				   break;
+			case 3: if(isempty(&s1))
+				printf("\n >>>>>>>>>>>stack is empty<<<<<<<<<<<<<") ;
+			else
+				display(&s1);
+				break;
+			 case 4: if(isempty(&s1))
+				 printf("\n>>>>>>>>>>>stack is empty<<<<<<<<<<<<<") ;
+			       else
+			       {
+				 num=peak(&s1);
+				 if(num!=NULL)
+				 printf("element at the top is %d",num);
+			       }
+				 break;
+			case 5:exit(0);
+			default:printf("\nInvalid choice ");
+		}
+	}
+
+}
