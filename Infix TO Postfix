@@ -52,15 +52,15 @@ int precedence(char ch)
      case '%': return 2;
      case '$':
      case '^': return 3;
-   }//switch
+   }
    return 0;
 }
 void infix_to_postfix(char infix[30],char postfix[30])
 {
 	stack s;
 	char ch,ch1;
-	int i,j=0;//i-index for infix[],j-index for postfix
-       //	char token;
+	int i,j=0;
+     
 	init(&s);
 	for(i=0;infix[i]!='\0';i++)
 	{
@@ -90,12 +90,12 @@ void infix_to_postfix(char infix[30],char postfix[30])
 		    postfix[j++]=ch1;
 		    break;
 	 default:postfix[j++]=ch;//operand
-   }//switch
-}//for
+   }
+}
 	while(!empty(&s))
-	       //	ch=pop(&s);
+	       
 		postfix[j++]=pop(&s);
-postfix[j]='\0'; //terminate the postfix string
+postfix[j]='\0'; 
 }
 void eval_postfix(char postfix[30])
 {
@@ -138,8 +138,8 @@ void eval_postfix(char postfix[30])
 		scanf("%d",&value);
 		push(&s,value);
 
-    }//switch
-  }//for
+    }
+  }
   printf("\n the result is %d",pop(&s));
 }
 void main()
