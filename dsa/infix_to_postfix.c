@@ -1,0 +1,112 @@
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#define MAX 20
+
+typedef struct stack
+{
+	int data[MAX];
+	int top;
+}stack;
+
+void init(stack *s)
+{
+	s->top=-1;
+}
+
+int empty(stack *s)
+{
+	if(s->top==-1)
+		return(1);
+	return(0);
+}
+
+void push(stack *s,int x)
+{
+	s->top=s->top+1;
+	s->data[s->top]=x;
+}
+
+int pop(stack *s)
+{
+	int x;
+	x=s->data[s->top];
+	s->top=s->top-1;
+	return(x);
+}
+
+int stktop(stack * p)
+{
+	return(p->data[p->top]);
+}
+int precedence(char ch)
+{
+   switch(ch)
+   {
+     case '(':return 0;
+     case '+':
+     case '-':return 1;
+     case '*':
+     case '/':
+     case '%': return 2;
+     case '$':
+     case '^': return 3;
+   }
+   return 0;
+}
+void infix_to_postfix(char infix[30],char postfix[30])
+{
+	stack s;
+	char ch,ch1;
+	int i,j=0;
+
+	init(&s);
+	for(i=0;infix[i]!='\0';i++)
+	{
+	       ch=infix[i];
+	   switch(ch)
+	 {
+	   case '(':push(&s,ch);
+	       break;
+	   case '+':
+	   case '-':
+	   case '*':
+	   case '/':
+	   case '%':
+	   case '$':
+	   case '^':
+	    if(empty(&s))
+	push(&s,ch);
+	else
+	{
+	 while(precedence(ch)<=precedence(stktop(&s)))
+	  postfix[j++]=pop(&s);
+	  push(&s,ch);
+	}
+	 break;
+	 case ')':
+		   while((ch1=pop(&s))!='(')
+		    postfix[j++]=ch1;
+		    break;
+	 default:postfix[j++]=ch;
+   }
+}
+	while(!empty(&s))
+
+		postfix[j++]=pop(&s);
+postfix[j]='\0';
+}
+
+void main()
+{
+	char infix[30],postfix[30];
+
+	printf("\nEnter an infix expression : ");
+	scanf("%s",infix);
+	infix_to_postfix(infix,postfix);
+	printf("\nPostfix string is: %s  \n\n",postfix);
+
+
+
+   }
