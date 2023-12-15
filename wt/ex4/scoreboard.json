@@ -1,0 +1,51 @@
+{
+    "scoreboard": {
+    "match": {
+    "venue": "Narendra Modi stadium",
+    "date": "2023-11-16",
+    "time": "7:00",
+    "over": "20"
+    },
+    "teams": {
+    "team": [
+    {
+    "name": "india",
+    "players": {
+    "player": [
+    {
+    "name": "virat",
+    "runs": "50",
+    "balls_faced": "30"
+    },
+    {
+    "name": "rohit",
+    "runs": "25",
+    "balls_faced": "20"
+    }
+    ]
+    },
+    "total_score": "75/2"
+    },
+    {
+    "name": "austrlia",
+    "players": {
+    "player": [
+    {
+    
+    "name": "smith",
+    "runs": "30",
+    "balls_faced": "25"
+    },
+    {
+    "name": "warner",
+    "runs": "40",
+    "balls_faced": "35"
+    }
+    ]
+    },
+    "total_score": "70/2"
+    }
+    ]
+    }
+    }
+    }

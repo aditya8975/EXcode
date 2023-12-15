@@ -1,0 +1,37 @@
+<scoreboard>
+<match>
+<venue>Narendra Modi stadium</venue>
+<date>15-11-2023</date>
+<time>7:00</time>
+<over>20</over>
+</match>
+<teams>
+<team name="india">
+<players>
+<player name="virat">
+<runs>50</runs>
+<balls_faced>30</balls_faced>
+</player>
+<player name="rohit">
+<runs>25</runs>
+<balls_faced>20</balls_faced>
+</player>
+</players>
+<total_score>75/2</total_score>
+</team>
+<team name="austrlia">
+<players>
+<player name="smith">
+<runs>30</runs>
+<balls_faced>25</balls_faced>
+</player>
+<player name="warner">
+
+<runs>40</runs>
+<balls_faced>35</balls_faced>
+</player>
+</players>
+<total_score>70/2</total_score>
+</team>
+</teams>
+</scoreboard>
