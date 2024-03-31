@@ -37,3 +37,52 @@ app.get('/users/:id', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+
+
+
+//////////////////////////////////////////////////////////////////
+const express = require('express');
+const axios = require('axios');
+
+const app = express();
+const port = 3000;
+
+// Route to fetch data from Mockaroo API
+app.get('/mock-data', async (req, res) => {
+  try {
+    const response = await axios.get('https://api.mockaroo.com/api/your_endpoint.json?key=your_api_key');
+    const data = response.data;
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
+///////////////////////////////////////////////////////////////
+const express = require('express');
+const axios = require('axios');
+
+const app = express();
+const port = 3000;
+
+// Route to fetch data from Cat Fact Ninja API
+app.get('/cat-fact', async (req, res) => {
+  try {
+    const response = await axios.get('https://catfact.ninja/fact');
+    const data = response.data;
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
