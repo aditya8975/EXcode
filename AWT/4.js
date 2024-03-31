@@ -86,3 +86,36 @@ app.get('/cat-fact', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+const express = require('express');
+const axios = require('axios');
+
+const app = express();
+const port = 3000;
+
+// Route to fetch data from Cat Fact Ninja API using Promise
+app.get('/cat-fact', (req, res) => {
+  new Promise((resolve, reject) => {
+    axios.get('https://catfact.ninja/fact')
+      .then(response => {
+        resolve(response.data);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  })
+  .then(data => {
+    res.json(data);
+  })
+  .catch(error => {
+    res.status(500).json({ error: 'Internal Server Error' });
+  });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
